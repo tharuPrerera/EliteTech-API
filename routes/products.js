@@ -9,6 +9,17 @@ router.get("/", async (req, res) => {
 });
 
 //get with params
+  router.get("/:productId", async (req, res) => {
+    let product = await productItem.findById(req.params.productId);
+    if (!product) {
+      return res
+        .sendStatus(400)
+        .send("The given id does not exist on our server...");
+    }
+
+    res.send(product);
+  });
+
 
 //post 
 router.post("/", async (req, res) => {
@@ -36,15 +47,26 @@ router.post("/", async (req, res) => {
 
 
 //put with params
-
-router.delete("/:productId", async (req, res) => {
-  let product = await productItem.findOneAndDelete({ _id: req.params.productId });
-
-  if (!product) {
-    return res.status(404).send("Product Id does not exit");
-  }
-
+router.put("/:productId", async (req, res) => {
+  let product = await productItem.findOneAndUpdate(
+    { _id: req.params.productId },
+    { $set: { 
+      imgUrl:req.body.imgUrl,
+      itemName: req.body.itemName,
+      unitPrice: req.body.unitPrice,
+      brand:req.body.brand,
+      code:req.body.code,
+      warranty:req.body.warranty,
+      quantity:req.body.quantity,
+      stock:req.body.stock
+     } 
+    },
+    { new: true, useFindAndModify: false }
+  );
   res.send(product);
 });
 
 module.exports = router;
+
+
+
