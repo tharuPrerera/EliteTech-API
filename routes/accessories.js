@@ -65,5 +65,7 @@ router.put("/:productId", async (req, res) => {
   res.send(product);
 });
 
+module.exports = router;
+
 
 

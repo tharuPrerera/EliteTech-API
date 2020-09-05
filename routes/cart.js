@@ -69,5 +69,7 @@ router.put("/:productId", async (req, res) => {
   res.send(cart);
 });
 
+module.exports = router;
+
 
 
