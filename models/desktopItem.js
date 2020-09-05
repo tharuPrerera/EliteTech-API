@@ -31,10 +31,6 @@ const desktopItemSchema = new mongoose.Schema({
         type: Number,
         required: true,
       },
-       quantity: {
-        type: Number,
-        required: true,
-      },
       stock: {
         type: String,
         required: true,
