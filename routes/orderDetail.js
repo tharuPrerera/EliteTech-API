@@ -9,6 +9,17 @@ router.get("/", async (req, res) => {
 });
 
 //get with params
+  router.get("/:productId", async (req, res) => {
+    let product = await orderDetails.findById(req.params.productId);
+    if (!product) {
+      return res
+        .sendStatus(400)
+        .send("The given id does not exist on our server...");
+    }
+
+    res.send(product);
+  });
+
 
 //post
 router.post("/", async (req, res) => {
@@ -39,16 +50,30 @@ router.post("/", async (req, res) => {
 });
 
 //put with params
-
-
-router.delete("/:productId", async (req, res) => {
-  let product = await orderDetails.findOneAndDelete({ _id: req.params.productId });
-
-  if (!product) {
-    return res.status(404).send("Product Id does not exit");
-  }
-
+router.put("/:productId", async (req, res) => {
+  let product = await orderDetails.findOneAndUpdate(
+    { _id: req.params.productId },
+    { $set: { 
+        first_name: req.body.first_name,
+        address: req.body.address,
+        email: req.body.email,
+        address: req.body.address,
+        postalcode:req.body.postalcode,
+        username:req.body.username,
+        itemName: req.body.itemName,
+        unitPrice: req.body.unitPrice,
+        brand:req.body.brand,
+        code:req.body.code,
+        warranty:req.body.warranty,
+        quantity:req.body.quantity,
+             } },
+    { new: true, useFindAndModify: false }
+  );
   res.send(product);
 });
 
 module.exports = router;
+
+
+
+
