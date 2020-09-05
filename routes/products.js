@@ -66,6 +66,16 @@ router.put("/:productId", async (req, res) => {
   res.send(product);
 });
 
+router.delete("/:productId", async (req, res) => {
+  let product = await productItem.findOneAndDelete({ _id: req.params.productId });
+
+  if (!product) {
+    return res.status(404).send("Product Id does not exit");
+  }
+
+  res.send(product);
+});
+
 module.exports = router;
 
 
