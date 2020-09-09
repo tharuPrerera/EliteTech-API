@@ -7,6 +7,10 @@ const accessories = require('./routes/accessories');
 const products = require('./routes/products')
 const orderDetail = require('./routes/orderDetail');
 const cart = require('./routes/cart');
+
+//user
+const users =require('./routes/users');
+
 const app = express();
 const PORT = 5000;
 
@@ -18,6 +22,10 @@ app.use('/api/accessories',accessories);
 app.use('/api/products',products);
 app.use('/api/orderDetail', orderDetail);
 app.use('/api/cart',cart);
+
+//user
+app.use('/api/users',users);
+
 
 mongoose //database connection string
   .connect("mongodb://localhost/items", {
