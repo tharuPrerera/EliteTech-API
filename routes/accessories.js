@@ -23,9 +23,12 @@ router.get("/", async (req, res) => {
 
 //post
 router.post("/", async (req, res) => {
-  if (!req.body.itemName) {
-    return res.status(400).send("Not all mandetory values have been set");
+  if (!req.body.quantity) {
+    return res.status(404).send("Please add  your quantitiy");
+    
   }
+
+ 
   try {
     let productToBeAddedToDb = new accessoriesItem({
       imgUrl:req.body.imgUrl,
@@ -39,7 +42,7 @@ router.post("/", async (req, res) => {
     });
 
     productToBeAddedToDb = await productToBeAddedToDb.save();
-    res.send(productToBeAddedToDb);
+    res.status(200).send({message:"Product added successfully", productToBeAddedToDb}); 
   } catch (e) {
     return res.status(500).send(e.message);
   }
