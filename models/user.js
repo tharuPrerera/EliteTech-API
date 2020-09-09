@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
     },
     email:{
         type: String,
-        required: true,
+       // required: true,
         minlength: 5,
         maxlength: 255,
         unique: true
@@ -56,12 +56,12 @@ const userSchema = new mongoose.Schema({
         minlength: 5,
         maxlength: 1024
     },
-    confirm_password:{
-        type: String,
-        required: true,
-        minlength: 5,
-        maxlength: 1024
-    },
+    // confirm_password:{
+    //     type: String,
+    //     required: true,
+    //     minlength: 5,
+    //     maxlength: 1024
+    // },
 });
 
 const User = mongoose.model("User" , userSchema);
