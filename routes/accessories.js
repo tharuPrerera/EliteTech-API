@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
 //post
 router.post("/", async (req, res) => {
   if (!req.body.quantity) {
-    return res.status(404).send("Please update your quantitiy");
+    return res.status(404).send("Please add  your quantitiy");
     
   }
 
