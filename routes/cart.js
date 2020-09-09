@@ -81,18 +81,6 @@ router.delete("/:productId", async (req, res) => {
  
 });
 
-
-router.put("total/:productId", async (req, res) => {
-  let cart = await cartItem.findOneAndUpdate (
-    {
-       _id: req.params.productId 
-    },
-   console.log(req)
-   
-  );
-  res.send(cart);
-});
-
 module.exports = router;
 
 
